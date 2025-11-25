@@ -1,0 +1,36 @@
+name = "bash"
+
+[default]
+executable = "/bin/bash"
+args = []
+envs = {}
+
+[druid]
+executable = "/bin/bash"
+args = ["-c", "source ${SHAWL_FILEPATH}; ${SHAWL_PREFIX}${SHAWL_FUNCTION} \"$@\"", "--"]
+envs = {}
+
+[exec]
+executable = "/bin/bash"
+args = ["${SHAWL_FILEPATH}"]
+envs = {}
+
+[shebang]
+executable = "${SHAWL_FILEPATH}"
+args = []
+envs = {}
+
+[pipe]
+executable = "/bin/bash"
+args = ["-s"]
+envs = {}
+
+[shell]
+executable = "/bin/bash"
+args = ["--rcfile", "${SHAWL_FILEPATH}"]
+envs = {}
+
+[shim]
+executable = "/bin/bash"
+args = ["${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
+envs = {}

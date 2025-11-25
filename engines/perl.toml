@@ -1,0 +1,36 @@
+name = "perl"
+
+[default]
+executable = "perl"
+args = []
+envs = {}
+
+[druid]
+executable = "perl"
+args = ["-I.", "-M${SHAWL_BASENAME}", "-e", "${SHAWL_PREFIX}${SHAWL_FUNCTION}(@ARGV)"]
+envs = {}
+
+[exec]
+executable = "perl"
+args = ["${SHAWL_FILEPATH}"]
+envs = {}
+
+[shebang]
+executable = "${SHAWL_FILEPATH}"
+args = []
+envs = {}
+
+[pipe]
+executable = "perl"
+args = []
+envs = {}
+
+[shell]
+executable = "perl"
+args = ["-de", "0"]
+envs = {}
+
+[shim]
+executable = "perl"
+args = ["${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
+envs = {}

@@ -1,0 +1,36 @@
+name = "ruby"
+
+[default]
+executable = "ruby"
+args = []
+envs = {}
+
+[druid]
+executable = "ruby"
+args = ["-r", "${SHAWL_FILEPATH}", "-e", "${SHAWL_PREFIX}${SHAWL_FUNCTION}(*ARGV)"]
+envs = {}
+
+[exec]
+executable = "ruby"
+args = ["${SHAWL_FILEPATH}"]
+envs = {}
+
+[shebang]
+executable = "${SHAWL_FILEPATH}"
+args = []
+envs = {}
+
+[pipe]
+executable = "ruby"
+args = []
+envs = {}
+
+[shell]
+executable = "irb"
+args = ["-r", "${SHAWL_FILEPATH}"]
+envs = {}
+
+[shim]
+executable = "ruby"
+args = ["${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
+envs = {}

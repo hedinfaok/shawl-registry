@@ -1,0 +1,36 @@
+name = "node"
+
+[default]
+executable = "node"
+args = []
+envs = {}
+
+[druid]
+executable = "node"
+args = ["-e", "const mod = require('${SHAWL_FILEPATH}'); mod.${SHAWL_PREFIX}${SHAWL_FUNCTION}(...process.argv.slice(1))"]
+envs = {}
+
+[exec]
+executable = "node"
+args = ["${SHAWL_FILEPATH}"]
+envs = {}
+
+[shebang]
+executable = "${SHAWL_FILEPATH}"
+args = []
+envs = {}
+
+[pipe]
+executable = "node"
+args = ["-"]
+envs = {}
+
+[shell]
+executable = "node"
+args = []
+envs = {}
+
+[shim]
+executable = "node"
+args = ["${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
+envs = {}

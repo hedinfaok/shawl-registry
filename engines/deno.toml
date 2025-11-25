@@ -1,0 +1,36 @@
+name = "deno"
+
+[default]
+executable = "deno"
+args = ["run", "--allow-all"]
+envs = {}
+
+[druid]
+executable = "deno"
+args = ["eval", "import * as mod from '${SHAWL_FILEPATH}'; mod.${SHAWL_PREFIX}${SHAWL_FUNCTION}(...Deno.args)"]
+envs = {}
+
+[exec]
+executable = "deno"
+args = ["run", "--allow-all", "${SHAWL_FILEPATH}"]
+envs = {}
+
+[shebang]
+executable = "${SHAWL_FILEPATH}"
+args = []
+envs = {}
+
+[pipe]
+executable = "deno"
+args = ["run", "--allow-all", "-"]
+envs = {}
+
+[shell]
+executable = "deno"
+args = []
+envs = {}
+
+[shim]
+executable = "deno"
+args = ["run", "--allow-all", "${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
+envs = {}

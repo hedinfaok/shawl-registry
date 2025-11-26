@@ -34,3 +34,7 @@ envs = {}
 executable = "/bin/bash"
 args = ["${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
 envs = {}
+
+[test]
+extensions = ["bash", "sh"]
+patterns = ["{mode}.test.{ext}", "{mode}_test.{ext}"]

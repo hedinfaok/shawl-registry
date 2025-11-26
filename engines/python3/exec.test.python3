@@ -1,0 +1,9 @@
+#!/usr/bin/env python3
+# Test file for exec mode - standalone executable script
+
+import sys
+
+print("EXEC_MODE_TEST_PASSED")
+
+if len(sys.argv) > 1:
+    print(f"ARGS: {' '.join(sys.argv[1:])}")

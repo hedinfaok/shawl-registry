@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+# Test file for druid mode - defines testable functions
+
+def test_function():
+    print("DRUID_MODE_TEST_PASSED")
+
+def test_with_args(*args):
+    print(f"ARGS: {' '.join(args)}")

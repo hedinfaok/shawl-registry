@@ -1,0 +1,48 @@
+name = "python3"
+
+# defaults for the engine
+[default]
+args = []
+executable = "python3"
+envs.PYTHONPATH = "${SHAWL_PATH}"
+envs.DEBUG = "1"
+
+# druid typically sources a script file and executes a function in the file.
+[druid]
+args = ['-c','from ${SHAWL_BASENAME} import *; ${SHAWL_PREFIX}${SHAWL_FUNCTION}()']
+executable = "python3"
+envs = {"PYTHONPATH" = "${SHAWL_PATH}"}
+
+# exec mode executes a file using the executable.
+[exec]
+args = ['${SHAWL_FILEPATH}']
+executable = "python3"
+envs = {"PYTHONPATH" = "${SHAWL_PATH}"}
+
+# shebang mode executes a file directly
+[shebang]
+args = []
+executable = "${SHAWL_FILEPATH}"
+envs = {"PYTHONPATH" = "${SHAWL_PATH}"}
+
+# pipe mode pipes the contents of a script into an executable and runs a function.
+[pipe]
+args = ["-s"]
+executable = "python3"
+envs = {"PYTHONPATH" = "${SHAWL_PATH}"}
+
+# shell mode open a REPL or interactive environment with the file loaded.
+[shell]
+args = ['-i', '${SHAWL_FILEPATH}','${SHAWL_FUNCTION}']
+executable = "python3"
+envs = {"PYTHONPATH" = "${SHAWL_PATH}"}
+
+# shim executes a file that prints to stdout according to the shawl API.
+[shim]
+args = ['${SHAWL_FUNCTION}']
+executable = "${SHAWL_FILEPATH}"
+envs.PYTHONPATH = "${SHAWL_PATH}"
+
+[test]
+extensions = ["python3", "py"]
+patterns = ["{mode}.test.{ext}", "{mode}_test.{ext}"]

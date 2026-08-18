@@ -1,0 +1,47 @@
+name = "deno"
+
+# defaults for the engine
+[default]
+executable = "deno"
+args = ["run", "--allow-all"]
+envs = {}
+
+# druid executes a function in the script file by importing it.
+[druid]
+executable = "deno"
+args = ["eval", "import * as mod from '${SHAWL_FILEPATH}'; mod.${SHAWL_PREFIX}${SHAWL_FUNCTION}(...Deno.args)"]
+envs = {}
+
+# exec mode executes a file using the executable.
+[exec]
+executable = "deno"
+args = ["run", "--allow-all", "${SHAWL_FILEPATH}"]
+envs = {}
+
+# shebang mode executes a file directly
+[shebang]
+executable = "${SHAWL_FILEPATH}"
+args = []
+envs = {}
+
+# pipe mode pipes the contents of a script into the executable via stdin.
+[pipe]
+executable = "deno"
+args = ["run", "--allow-all", "-"]
+envs = {}
+
+# shell mode opens a REPL or interactive environment.
+[shell]
+executable = "deno"
+args = ["repl"]
+envs = {}
+
+# shim executes a file that prints to stdout according to the shawl API.
+[shim]
+executable = "deno"
+args = ["run", "--allow-all", "${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
+envs = {}
+
+[test]
+extensions = ["ts", "js"]
+patterns = ["{mode}.test.{ext}", "{mode}_test.{ext}"]

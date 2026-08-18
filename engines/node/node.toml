@@ -1,0 +1,47 @@
+name = "node"
+
+# defaults for the engine
+[default]
+args = []
+executable = "node"
+envs = {}
+
+# druid typically sources a script file and executes a function in the file.
+[druid]
+executable = "node"
+args = ["-e", "const mod = require('${SHAWL_FILEPATH}'); mod.${SHAWL_PREFIX}${SHAWL_FUNCTION}(...process.argv.slice(1))"]
+envs = {}
+
+# exec mode executes a file using the executable.
+[exec]
+executable = "node"
+args = ["${SHAWL_FILEPATH}"]
+envs = {}
+
+# shebang mode executes a file directly
+[shebang]
+executable = "${SHAWL_FILEPATH}"
+args = []
+envs = {}
+
+# pipe mode pipes the contents of a script into an executable and runs a function.
+[pipe]
+executable = "node"
+args = ["-"]
+envs = {}
+
+# shell mode open a REPL or interactive environment with the file loaded.
+[shell]
+executable = "node"
+args = []
+envs = {}
+
+# shim executes a file that prints to stdout according to the shawl API.
+[shim]
+executable = "node"
+args = ["${SHAWL_FILEPATH}", "${SHAWL_FUNCTION}"]
+envs = {}
+
+[test]
+extensions = ["js", "mjs"]
+patterns = ["{mode}.test.{ext}", "{mode}_test.{ext}"]

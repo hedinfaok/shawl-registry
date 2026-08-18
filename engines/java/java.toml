@@ -1,0 +1,54 @@
+name = "java"
+
+# Java is a COMPILED language, not scripted: source must be javac-compiled then
+# run with java. Every non-REPL mode therefore shells out to bash and runs
+# `javac <file> && java -cp <dir> <class>`.
+
+# defaults for the engine - compile then run.
+[default]
+args = ["-c", "javac ${SHAWL_FILEPATH} && java -cp $(dirname ${SHAWL_FILEPATH}) ${SHAWL_BASENAME}"]
+executable = "/bin/bash"
+envs = {}
+
+# druid typically sources a script file and executes a function in the file.
+# Args are echoed after a `--` separator so java receives them positionally.
+[druid]
+args = ["-c", "javac ${SHAWL_FILEPATH} && java -cp $(dirname ${SHAWL_FILEPATH}) ${SHAWL_BASENAME} ${SHAWL_FUNCTION} \"$@\"", "--"]
+executable = "/bin/bash"
+envs = {}
+
+# exec mode executes a file using the executable.
+[exec]
+args = ["-c", "javac ${SHAWL_FILEPATH} && java -cp $(dirname ${SHAWL_FILEPATH}) ${SHAWL_BASENAME} \"$@\"", "--"]
+executable = "/bin/bash"
+envs = {}
+
+# shebang mode executes a file directly.
+[shebang]
+args = ["-c", "javac ${SHAWL_FILEPATH} && java -cp $(dirname ${SHAWL_FILEPATH}) ${SHAWL_BASENAME} \"$@\"", "--"]
+executable = "/bin/bash"
+envs = {}
+
+# pipe mode pipes the contents of a script into an executable and runs a function.
+# NOTE: java must be compiled before piping its input is meaningful; the source is
+# javac-compiled and then run, so piped stdin is delivered to the compiled program's stdin.
+[pipe]
+args = ["-c", "javac ${SHAWL_FILEPATH} && java -cp $(dirname ${SHAWL_FILEPATH}) ${SHAWL_BASENAME}"]
+executable = "bash"
+envs = {}
+
+# shell mode opens a REPL or interactive environment with the file loaded.
+[shell]
+args = ["${SHAWL_FILEPATH}"]
+executable = "jshell"
+envs = {}
+
+# shim executes a file that prints to stdout according to the shawl API.
+[shim]
+args = ["-c", "javac ${SHAWL_FILEPATH} && java -cp $(dirname ${SHAWL_FILEPATH}) ${SHAWL_BASENAME} ${SHAWL_FUNCTION} \"$@\"", "--"]
+executable = "/bin/bash"
+envs = {}
+
+[test]
+extensions = ["java"]
+patterns = ["{mode}.test.{ext}", "{mode}_test.{ext}"]

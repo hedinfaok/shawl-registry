@@ -8,8 +8,8 @@ This directory contains engine configuration files for various scripting languag
 - **python3** - Python 3 scripts
 - **node** - Node.js scripts
 - **ruby** - Ruby scripts
-- **perl** - Perl scripts
 - **deno** - Deno runtime (TypeScript/JavaScript)
+- **java** - Java (compiled with `javac`, run with `java`)
 
 ## File Types
 
@@ -40,7 +40,8 @@ cp engines/*.tpl .shawl.d/
 ```bash
 shawl init --engine node myscript > myscript.js
 shawl init --engine ruby myscript > myscript.rb
-shawl init --engine perl myscript > myscript.pl
+shawl init --engine deno myscript > myscript.ts
+shawl init --engine java myscript > myscript.java
 ```
 
 ### Execute scripts in different modes
